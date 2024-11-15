@@ -49,7 +49,7 @@ Writing Policy Methods
 The policy class we just created doesn't do much right now. Lets define a method
 that allows us to check if a user can update an article::
 
-    public function canUpdate(IdentityInterface $user, Article $article)
+    public function canEdit(IdentityInterface $user, Article $article)
     {
         return $user->id == $article->user_id;
     }
