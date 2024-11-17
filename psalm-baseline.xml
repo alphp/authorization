@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.20.0@3f284e96c9d9be6fe6b15c79416e1d1903dcfef4">
-  <file src="src/Command/PolicyCommand.php">
-    <RiskyTruthyFalsyComparison>
-      <code>!$name</code>
-    </RiskyTruthyFalsyComparison>
-  </file>
-  <file src="src/IdentityDecorator.php">
-    <RiskyTruthyFalsyComparison>
-      <code><![CDATA[$this->identity]]></code>
-    </RiskyTruthyFalsyComparison>
+<files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
+  <file src="src/Controller/Component/AuthorizationComponent.php">
+    <InvalidReturnStatement>
+      <code><![CDATA[$this->performCheck($resource, $action)]]></code>
+      <code><![CDATA[$this->performCheck($resource, $action, 'canResult')]]></code>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <code><![CDATA[\Authorization\Policy\ResultInterface]]></code>
+      <code><![CDATA[bool]]></code>
+    </InvalidReturnType>
   </file>
 </files>
