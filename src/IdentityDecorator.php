@@ -49,7 +49,6 @@ class IdentityDecorator implements IdentityInterface
      *
      * @param \Authorization\AuthorizationServiceInterface $service The authorization service.
      * @param \ArrayAccess|array $identity Identity data
-     * @throws \InvalidArgumentException When invalid identity data is passed.
      */
     public function __construct(AuthorizationServiceInterface $service, ArrayAccess|array $identity)
     {
@@ -111,6 +110,7 @@ class IdentityDecorator implements IdentityInterface
         }
         $call = [$this->identity, $method];
 
+        /** @phpstan-ignore callable.nonCallable */
         return $call(...$args);
     }
 

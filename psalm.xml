@@ -24,5 +24,6 @@
         <MissingClosureParamType errorLevel="info" />
 
         <RedundantConditionGivenDocblockType errorLevel="info" />
+        <RiskyTruthyFalsyComparison errorLevel="info" />
     </issueHandlers>
 </psalm>

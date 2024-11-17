@@ -38,7 +38,6 @@ class Identity extends IdentityDecorator implements AuthenIdentityInterface
      *
      * @param \Authorization\AuthorizationServiceInterface $service The authorization service.
      * @param \Authentication\IdentityInterface $identity Identity data
-     * @throws \InvalidArgumentException When invalid identity data is passed.
      */
     public function __construct(AuthorizationServiceInterface $service, AuthenIdentityInterface $identity)
     {
