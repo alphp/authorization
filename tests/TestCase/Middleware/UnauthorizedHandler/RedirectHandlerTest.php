@@ -52,7 +52,7 @@ class RedirectHandlerTest extends TestCase
         $request = ServerRequestFactory::fromGlobals(
             [
                 'REQUEST_METHOD' => 'GET',
-                'PATH_INFO' => '/path',
+                'REQUEST_URI' => '/path',
                 'QUERY_STRING' => 'key=value',
             ]
         );
@@ -110,7 +110,7 @@ class RedirectHandlerTest extends TestCase
         $request = ServerRequestFactory::fromGlobals(
             [
                 'REQUEST_METHOD' => $method,
-                'PATH_INFO' => '/path',
+                'REQUEST_URI' => '/path',
                 'QUERY_STRING' => 'key=value',
             ]
         );
