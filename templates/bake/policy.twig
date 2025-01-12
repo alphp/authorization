@@ -18,10 +18,6 @@ declare(strict_types=1);
 
 namespace {{ namespace }}\Policy;
 
-{% set imports = [
-    'Authorization\\IdentityInterface',
-    classname,
-] %}
 {% for import in imports|sort %}
 use {{ import }};
 {% endfor %}
@@ -33,5 +29,7 @@ class {{ name }}{{ suffix }}Policy
 {
 {% if type == 'entity' %}
     {{- _view.element('Authorization.entity_methods') -}}
+{% elseif type == 'table' %}
+    {{- _view.element('Authorization.table_methods') -}}
 {% endif %}
 }
