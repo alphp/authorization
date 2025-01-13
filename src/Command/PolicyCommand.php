@@ -88,12 +88,16 @@ class PolicyCommand extends SimpleBakeCommand
             $suffix = 'Table';
         }
 
+        $imports = [];
         $className = $data['namespace'] . '\\' . $name;
         if ($type === 'table') {
             $className = "{$data['namespace']}\Model\\Table\\{$name}{$suffix}";
+            $imports[] = 'Cake\ORM\SelectQuery';
         } elseif ($type === 'entity') {
             $className = "{$data['namespace']}\Model\\Entity\\{$name}";
+            $imports[] = $className;
         }
+        $imports[] = 'Authorization\\IdentityInterface';
 
         $variable = Inflector::variable($name);
         if ($variable === 'user') {
@@ -106,6 +110,7 @@ class PolicyCommand extends SimpleBakeCommand
             'suffix' => $suffix,
             'variable_name' => $variable,
             'classname' => $className,
+            'imports' => $imports,
         ];
 
         return $vars + $data;
