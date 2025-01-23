@@ -92,7 +92,7 @@ class PolicyCommand extends SimpleBakeCommand
         $className = $data['namespace'] . '\\' . $name;
         if ($type === 'table') {
             $className = "{$data['namespace']}\Model\\Table\\{$name}{$suffix}";
-            $imports[] = 'Cake\ORM\SelectQuery';
+            $imports[] = 'Cake\ORM\Query\SelectQuery';
         } elseif ($type === 'entity') {
             $className = "{$data['namespace']}\Model\\Entity\\{$name}";
             $imports[] = $className;
