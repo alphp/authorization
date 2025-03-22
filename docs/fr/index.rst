@@ -10,9 +10,9 @@ répertoire racine de votre project CakePHP (là où se trouve le fichier
 
 .. code-block:: shell
 
-    php composer.phar require "cakephp/authorization:^2.0"+    
+    php composer.phar require cakephp/authorization    
 
-La version 2 du Plugin Authorization est compatible avec CakePHP 4.
+La version 3 du Plugin Authorization est compatible avec CakePHP 5.
 
 Chargez le plugin en ajoutant la ligne suivante dans le fichier
 ``src/Application.php`` de votre projet::
