@@ -86,6 +86,7 @@ When having fallback routing activated, all asset based 404s as well as not exis
 trigger the RequestAuthorizationMiddleware.
 In this case, it is possible to use this middleware only for your (App)controller::
 
+    // src/Controller/AppController.php
     public function initialize(): void
     {
         parent::initialize();
