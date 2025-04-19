@@ -55,7 +55,7 @@ class CakeRedirectHandler extends RedirectHandler
                 'Class `%s` does not exist. ' .
                 'Make sure you are using a full CakePHP framework ' .
                 'and have autoloading configured properly.',
-                Router::class
+                Router::class,
             );
             throw new RuntimeException($message);
         }

@@ -34,7 +34,7 @@ trait UnauthorizedHandlerTrait
     protected function handleException(
         Exception $exception,
         ServerRequestInterface $request,
-        string|array $handler
+        string|array $handler,
     ): ResponseInterface {
         if (is_string($handler)) {
             $handler = [
@@ -50,7 +50,7 @@ trait UnauthorizedHandlerTrait
         return $unauthorizedHandler->handle(
             $exception,
             $request,
-            $handler
+            $handler,
         );
     }
 }

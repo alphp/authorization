@@ -30,12 +30,12 @@ interface HandlerInterface
      *
      * @param \Authorization\Exception\Exception $exception Authorization exception thrown by the application.
      * @param \Psr\Http\Message\ServerRequestInterface $request Server request.
-     * @param array $options Options array.
+     * @param array<string, mixed> $options Options array.
      * @return \Psr\Http\Message\ResponseInterface
      */
     public function handle(
         Exception $exception,
         ServerRequestInterface $request,
-        array $options = []
+        array $options = [],
     ): ResponseInterface;
 }

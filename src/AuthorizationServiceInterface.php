@@ -53,7 +53,7 @@ interface AuthorizationServiceInterface
         ?IdentityInterface $user,
         string $action,
         mixed $resource,
-        mixed ...$optionalArgs
+        mixed ...$optionalArgs,
     ): ResultInterface;
 
     /**
@@ -74,11 +74,11 @@ interface AuthorizationServiceInterface
         ?IdentityInterface $user,
         string $action,
         mixed $resource,
-        mixed ...$optionalArgs
+        mixed ...$optionalArgs,
     ): mixed;
 
     /**
-     * Return a boolean based on whether or not this object
+     * Return a boolean based on whether this object
      * has had an authorization operation performed.
      *
      * @return bool

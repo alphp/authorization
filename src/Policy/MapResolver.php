@@ -52,7 +52,7 @@ class MapResolver implements ResolverInterface
      * ]
      * ```
      *
-     * @param array $map Resource class name to policy map.
+     * @param array<string, mixed> $map Resource class name to policy map.
      * @param \Cake\Core\ContainerInterface|null $container The DIC instance from the application
      */
     public function __construct(array $map = [], ?ContainerInterface $container = null)

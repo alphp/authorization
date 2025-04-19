@@ -34,7 +34,7 @@ class CakeRedirectHandlerTest extends TestCase
         $builder->connect(
             '/login',
             ['controller' => 'Users', 'action' => 'login'],
-            ['_name' => 'login']
+            ['_name' => 'login'],
         );
         $builder->connect('/{controller}/{action}');
     }
@@ -45,7 +45,7 @@ class CakeRedirectHandlerTest extends TestCase
 
         $exception = new Exception();
         $request = ServerRequestFactory::fromGlobals(
-            ['REQUEST_URI' => '/admin/dashboard']
+            ['REQUEST_URI' => '/admin/dashboard'],
         );
         $response = $handler->handle($exception, $request, [
             'exceptions' => [
@@ -63,7 +63,7 @@ class CakeRedirectHandlerTest extends TestCase
 
         $exception = new Exception();
         $request = ServerRequestFactory::fromGlobals(
-            ['REQUEST_URI' => '/admin/dashboard']
+            ['REQUEST_URI' => '/admin/dashboard'],
         );
 
         $response = $handler->handle($exception, $request, [
@@ -85,7 +85,7 @@ class CakeRedirectHandlerTest extends TestCase
 
         $exception = new Exception();
         $request = ServerRequestFactory::fromGlobals(
-            ['REQUEST_URI' => '/']
+            ['REQUEST_URI' => '/'],
         );
 
         $response = $handler->handle($exception, $request, [
@@ -110,7 +110,7 @@ class CakeRedirectHandlerTest extends TestCase
 
         $exception = new Exception();
         $request = ServerRequestFactory::fromGlobals(
-            ['REQUEST_URI' => '/']
+            ['REQUEST_URI' => '/'],
         );
 
         $response = $handler->handle($exception, $request, [
@@ -131,7 +131,7 @@ class CakeRedirectHandlerTest extends TestCase
 
         Configure::write('App.base', '/basedir');
         $request = ServerRequestFactory::fromGlobals(
-            ['REQUEST_URI' => '/admin/dashboard']
+            ['REQUEST_URI' => '/admin/dashboard'],
         );
         Router::setRequest($request);
 
@@ -147,7 +147,7 @@ class CakeRedirectHandlerTest extends TestCase
         $this->assertSame(302, $response->getStatusCode());
         $this->assertSame(
             '/basedir/login?redirect=%2Fadmin%2Fdashboard',
-            $response->getHeaderLine('Location')
+            $response->getHeaderLine('Location'),
         );
     }
 }

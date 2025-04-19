@@ -61,7 +61,7 @@ class OrmResolver implements ResolverInterface
     public function __construct(
         string $appNamespace = 'App',
         array $overrides = [],
-        ?ContainerInterface $container = null
+        ?ContainerInterface $container = null,
     ) {
         $this->appNamespace = $appNamespace;
         $this->overrides = $overrides;

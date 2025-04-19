@@ -85,14 +85,14 @@ class AuthorizationMiddleware implements MiddlewareInterface
      * Constructor.
      *
      * @param \Authorization\AuthorizationServiceInterface|\Authorization\AuthorizationServiceProviderInterface $subject Authorization service or provider instance.
-     * @param array $config Config array.
+     * @param array<string, mixed> $config Config array.
      * @param \Cake\Core\ContainerInterface|null $container The container instance from the application
      * @throws \InvalidArgumentException
      */
     public function __construct(
         AuthorizationServiceInterface|AuthorizationServiceProviderInterface $subject,
         array $config = [],
-        ?ContainerInterface $container = null
+        ?ContainerInterface $container = null,
     ) {
         if ($this->_defaultConfig['identityDecorator'] === null) {
             $this->_defaultConfig['identityDecorator'] = interface_exists(AuthenIdentityInterface::class)
@@ -142,7 +142,7 @@ class AuthorizationMiddleware implements MiddlewareInterface
             $response = $this->handleException(
                 $exception,
                 $request,
-                $this->getConfig('unauthorizedHandler')
+                $this->getConfig('unauthorizedHandler'),
             );
         }
 
@@ -157,7 +157,7 @@ class AuthorizationMiddleware implements MiddlewareInterface
      * @throws \RuntimeException When authorization method has not been defined.
      */
     protected function getAuthorizationService(
-        ServerRequestInterface $request
+        ServerRequestInterface $request,
     ): AuthorizationServiceInterface {
         $service = $this->subject;
         if ($this->subject instanceof AuthorizationServiceProviderInterface) {
@@ -168,7 +168,7 @@ class AuthorizationMiddleware implements MiddlewareInterface
             throw new RuntimeException(sprintf(
                 'Invalid service returned from the provider. `%s` does not implement `%s`.',
                 get_debug_type($service),
-                AuthorizationServiceInterface::class
+                AuthorizationServiceInterface::class,
             ));
         }
 
@@ -184,7 +184,7 @@ class AuthorizationMiddleware implements MiddlewareInterface
      */
     protected function buildIdentity(
         AuthorizationServiceInterface $service,
-        ArrayAccess|array $identity
+        ArrayAccess|array $identity,
     ): IdentityInterface {
         $class = $this->getConfig('identityDecorator');
 
@@ -200,7 +200,7 @@ class AuthorizationMiddleware implements MiddlewareInterface
             throw new RuntimeException(sprintf(
                 'Invalid identity returned by decorator. `%s` does not implement `%s`.',
                 get_debug_type($identity),
-                IdentityInterface::class
+                IdentityInterface::class,
             ));
         }
 

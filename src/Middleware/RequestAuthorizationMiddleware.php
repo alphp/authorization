@@ -57,7 +57,7 @@ class RequestAuthorizationMiddleware implements MiddlewareInterface
     /**
      * Constructor
      *
-     * @param array $config Configuration options
+     * @param array<string, mixed> $config Configuration options
      */
     public function __construct(array $config = [])
     {

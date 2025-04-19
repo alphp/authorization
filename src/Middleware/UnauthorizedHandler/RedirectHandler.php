@@ -54,7 +54,7 @@ class RedirectHandler implements HandlerInterface
     public function handle(
         Exception $exception,
         ServerRequestInterface $request,
-        array $options = []
+        array $options = [],
     ): ResponseInterface {
         $options += $this->defaultOptions;
 
@@ -93,7 +93,7 @@ class RedirectHandler implements HandlerInterface
      * Returns the url for the Location header.
      *
      * @param \Psr\Http\Message\ServerRequestInterface $request Server request.
-     * @param array $options Options.
+     * @param array<string, mixed> $options Options.
      * @return string
      */
     protected function getUrl(ServerRequestInterface $request, array $options): string

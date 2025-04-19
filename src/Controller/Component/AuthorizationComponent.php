@@ -123,7 +123,7 @@ class AuthorizationComponent extends Component
     protected function performCheck(
         mixed $resource,
         ?string $action = null,
-        string $method = 'can'
+        string $method = 'can',
     ): ResultInterface|bool {
         $request = $this->getController()->getRequest();
         if ($action === null) {
@@ -197,7 +197,7 @@ class AuthorizationComponent extends Component
     /**
      * Allows to map controller actions to policy actions.
      *
-     * @param array $actions Map of controller action to policy action.
+     * @param array<string, mixed> $actions Map of controller action to policy action.
      * @param bool $overwrite Set to true to override configuration. False will merge with current configuration.
      * @return $this
      */
@@ -238,7 +238,7 @@ class AuthorizationComponent extends Component
                 'Expected that `%s` would be an instance of %s, but got %s',
                 $serviceAttribute,
                 AuthorizationServiceInterface::class,
-                $type
+                $type,
             ));
         }
 
@@ -266,7 +266,7 @@ class AuthorizationComponent extends Component
                 'Expected that `%s` would be an instance of %s, but got %s',
                 $identityAttribute,
                 IdentityInterface::class,
-                $type
+                $type,
             ));
         }
 

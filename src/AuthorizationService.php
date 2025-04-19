@@ -35,7 +35,7 @@ class AuthorizationService implements AuthorizationServiceInterface
     protected ResolverInterface $resolver;
 
     /**
-     * Track whether or not authorization was checked.
+     * Track whether authorization was checked.
      *
      * @var bool
      */
@@ -82,7 +82,7 @@ class AuthorizationService implements AuthorizationServiceInterface
         ?IdentityInterface $user,
         string $action,
         mixed $resource,
-        mixed ...$optionalArgs
+        mixed ...$optionalArgs,
     ): bool|ResultInterface {
         $this->authorizationChecked = true;
         $policy = $this->resolver->getPolicy($resource);
@@ -102,8 +102,8 @@ class AuthorizationService implements AuthorizationServiceInterface
             is_bool($result) || $result instanceof ResultInterface,
             new Exception(sprintf(
                 'Authorization check method must return `%s` or `bool`.',
-                ResultInterface::class
-            ))
+                ResultInterface::class,
+            )),
         );
 
         return $result;
@@ -144,7 +144,7 @@ class AuthorizationService implements AuthorizationServiceInterface
 
         assert(
             method_exists($policy, $method) || method_exists($policy, '__call'),
-            new MissingMethodException([$method, $action, get_class($policy)])
+            new MissingMethodException([$method, $action, get_class($policy)]),
         );
 
         return [$policy, $method](...);
@@ -164,7 +164,7 @@ class AuthorizationService implements AuthorizationServiceInterface
 
         assert(
             method_exists($policy, $method) || method_exists($policy, '__call'),
-            new MissingMethodException([$method, $action, get_class($policy)])
+            new MissingMethodException([$method, $action, get_class($policy)]),
         );
 
         return [$policy, $method](...);

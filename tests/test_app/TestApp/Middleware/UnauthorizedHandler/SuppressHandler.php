@@ -30,7 +30,7 @@ class SuppressHandler implements HandlerInterface
     public function handle(
         Exception $exception,
         ServerRequestInterface $request,
-        array $options = []
+        array $options = [],
     ): ResponseInterface {
         return new Response();
     }

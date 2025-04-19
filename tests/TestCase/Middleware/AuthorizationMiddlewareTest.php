@@ -86,7 +86,7 @@ class AuthorizationMiddlewareTest extends TestCase
             ->expects($this->once())
             ->method('getAuthorizationService')
             ->with(
-                $this->isInstanceOf(ServerRequestInterface::class)
+                $this->isInstanceOf(ServerRequestInterface::class),
             )
             ->willReturn($service);
 
@@ -280,7 +280,7 @@ class AuthorizationMiddlewareTest extends TestCase
         $request = ServerRequestFactory::fromGlobals(
             ['REQUEST_URI' => '/testpath'],
             [],
-            ['username' => 'mariano', 'password' => 'password']
+            ['username' => 'mariano', 'password' => 'password'],
         );
         $handler = new TestRequestHandler();
         $application = new Application('config');
@@ -297,7 +297,7 @@ class AuthorizationMiddlewareTest extends TestCase
         $request = ServerRequestFactory::fromGlobals(
             ['REQUEST_URI' => '/testpath'],
             [],
-            ['username' => 'mariano', 'password' => 'password']
+            ['username' => 'mariano', 'password' => 'password'],
         );
         $handler = new TestRequestHandler();
 

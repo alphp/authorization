@@ -84,7 +84,7 @@ class PolicyCommandTest extends TestCase
         $this->assertFileExists($this->generatedFile);
         $this->assertSameAsFile(
             $this->comparisonDir . 'BookmarkEntityPolicy.php',
-            file_get_contents($this->generatedFile)
+            file_get_contents($this->generatedFile),
         );
     }
 
@@ -98,7 +98,7 @@ class PolicyCommandTest extends TestCase
         $this->assertFileExists($this->generatedFile);
         $this->assertSameAsFile(
             $this->comparisonDir . 'ThingPolicy.php',
-            file_get_contents($this->generatedFile)
+            file_get_contents($this->generatedFile),
         );
     }
 
@@ -112,7 +112,7 @@ class PolicyCommandTest extends TestCase
         $this->assertFileExists($this->generatedFile);
         $this->assertSameAsFile(
             $this->comparisonDir . 'BookmarksTablePolicy.php',
-            file_get_contents($this->generatedFile)
+            file_get_contents($this->generatedFile),
         );
     }
 
@@ -126,7 +126,7 @@ class PolicyCommandTest extends TestCase
         $this->assertFileExists($this->generatedFile);
         $this->assertSameAsFile(
             $this->comparisonDir . 'TestPluginUserEntityPolicy.php',
-            file_get_contents($this->generatedFile)
+            file_get_contents($this->generatedFile),
         );
     }
 
@@ -140,7 +140,7 @@ class PolicyCommandTest extends TestCase
         $this->assertFileExists($this->generatedFile);
         $this->assertSameAsFile(
             $this->comparisonDir . 'TestPluginUsersTablePolicy.php',
-            file_get_contents($this->generatedFile)
+            file_get_contents($this->generatedFile),
         );
     }
 }

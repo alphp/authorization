@@ -51,7 +51,7 @@ class ForbiddenException extends Exception
         ?ResultInterface $result = null,
         string|array $message = '',
         ?int $code = null,
-        ?Throwable $previous = null
+        ?Throwable $previous = null,
     ) {
         $this->result = $result;
 

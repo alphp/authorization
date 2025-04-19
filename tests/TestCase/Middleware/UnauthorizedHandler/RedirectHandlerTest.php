@@ -31,7 +31,7 @@ class RedirectHandlerTest extends TestCase
 
         $exception = new Exception();
         $request = ServerRequestFactory::fromGlobals(
-            ['REQUEST_METHOD' => 'GET']
+            ['REQUEST_METHOD' => 'GET'],
         );
 
         $response = $handler->handle($exception, $request, [
@@ -54,7 +54,7 @@ class RedirectHandlerTest extends TestCase
                 'REQUEST_METHOD' => 'GET',
                 'REQUEST_URI' => '/path',
                 'QUERY_STRING' => 'key=value',
-            ]
+            ],
         );
 
         $response = $handler->handle($exception, $request, [
@@ -74,7 +74,7 @@ class RedirectHandlerTest extends TestCase
 
         $exception = new Exception();
         $request = ServerRequestFactory::fromGlobals(
-            ['REQUEST_METHOD' => 'GET']
+            ['REQUEST_METHOD' => 'GET'],
         );
 
         $response = $handler->handle($exception, $request, [
@@ -112,7 +112,7 @@ class RedirectHandlerTest extends TestCase
                 'REQUEST_METHOD' => $method,
                 'REQUEST_URI' => '/path',
                 'QUERY_STRING' => 'key=value',
-            ]
+            ],
         );
 
         $response = $handler->handle($exception, $request, [
@@ -133,7 +133,7 @@ class RedirectHandlerTest extends TestCase
 
         Configure::write('App.base', '/basedir');
         $request = ServerRequestFactory::fromGlobals(
-            ['REQUEST_URI' => '/path', 'REQUEST_METHOD' => 'GET']
+            ['REQUEST_URI' => '/path', 'REQUEST_METHOD' => 'GET'],
         );
 
         $response = $handler->handle($exception, $request, [
@@ -146,7 +146,7 @@ class RedirectHandlerTest extends TestCase
         $this->assertSame(302, $response->getStatusCode());
         $this->assertSame(
             '/basedir/login?redirect=%2Fpath',
-            $response->getHeaderLine('Location')
+            $response->getHeaderLine('Location'),
         );
     }
 
