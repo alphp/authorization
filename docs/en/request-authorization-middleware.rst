@@ -78,3 +78,29 @@ AuthorizationMiddleware::
         $middlewareQueue->add(new AuthorizationMiddleware($this));
         $middlewareQueue->add(new RequestAuthorizationMiddleware());
     }
+
+Controller Usage
+================
+
+When having fallback routing activated, all asset based 404s as well as not existing controllers would also
+trigger the RequestAuthorizationMiddleware.
+In this case, it is possible to use this middleware only for your (App)controller::
+
+    // src/Controller/AppController.php
+    public function initialize(): void
+    {
+        parent::initialize();
+
+        $this->middleware(function ($request, $handler): ResponseInterface {
+            $config = [
+                'unauthorizedHandler' => [
+                    ...
+                ],
+            ];
+            $middleware = new RequestAuthorizationMiddleware($config);
+
+            return $middleware->process($request, $handler);
+        });
+    }
+
+Also note, that in this case you will e.g. need ``'DebugKit.ignoreAuthorization'`` set to ``true``.
