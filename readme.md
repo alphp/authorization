@@ -21,15 +21,10 @@ You can install this plugin into your CakePHP application using
 [composer](https://getcomposer.org):
 
 ```
-php composer.phar require cakephp/authorization
+composer require cakephp/authorization
 ```
 
-Load the plugin by adding the following statement in your project's
-`src/Application.php`:
-```php
-$this->addPlugin('Authorization');
-```
-or running the console command
+Then load the plugin:
 ```
 bin/cake plugin load Authorization
 ```
