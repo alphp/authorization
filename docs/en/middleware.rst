@@ -226,10 +226,10 @@ add other ``Authorization\Exception\Exception`` based exceptions to the
 
     'exceptions' => [
         MissingIdentityException::class,
-        ForbiddenException::class
+        ForbiddenException::class,
     ],
 
-See the `RedirectHandler source <https://github.com/cakephp/authorization/blob/2.next/src/Middleware/UnauthorizedHandler/RedirectHandler.php>`__
+See the `RedirectHandler source <https://github.com/cakephp/authorization/blob/3.x/src/Middleware/UnauthorizedHandler/RedirectHandler.php>`__
 
 Configuration options are passed to the handler's ``handle()`` method as the
 last parameter.
@@ -279,7 +279,7 @@ How to create a custom UnauthorizedHandler
             'queryParam' => 'redirectUrl',
             'exceptions' => [
                 MissingIdentityException::class,
-                ForbiddenException::class
+                ForbiddenException::class,
             ],
             'custom_param' => true,
         ],
@@ -291,5 +291,5 @@ This is, because we extend our handler based on the RedirectHandler present in t
 
 The ``custom_param`` appears in the ``$options`` array given to you in the ``handle()`` function inside your ``CustomRedirectHandler`` if you wish to add some more config parameters to your functionality.
 
-You can look at `CakeRedirectHandler <https://github.com/cakephp/authorization/blob/2.next/src/Middleware/UnauthorizedHandler/CakeRedirectHandler.php>`__ or `RedirectHandler <https://github.com/cakephp/authorization/blob/2.next/src/Middleware/UnauthorizedHandler/RedirectHandler.php>`__
+You can look at `CakeRedirectHandler <https://github.com/cakephp/authorization/blob/3.x/src/Middleware/UnauthorizedHandler/CakeRedirectHandler.php>`__ or `RedirectHandler <https://github.com/cakephp/authorization/blob/3.x/src/Middleware/UnauthorizedHandler/RedirectHandler.php>`__
 how such a Handler can/should look like.
