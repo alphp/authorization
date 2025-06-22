@@ -107,7 +107,6 @@ class OrmResolver implements ResolverInterface
         $class = get_class($entity);
         $entityNamespace = '\Model\Entity\\';
         $namespace = str_replace('\\', '/', substr($class, 0, (int)strpos($class, $entityNamespace)));
-        /** @psalm-suppress PossiblyFalseOperand */
         $name = substr($class, strpos($class, $entityNamespace) + strlen($entityNamespace));
 
         return $this->findPolicy($class, $name, $namespace);
@@ -124,7 +123,6 @@ class OrmResolver implements ResolverInterface
         $class = get_class($table);
         $tableNamespace = '\Model\Table\\';
         $namespace = str_replace('\\', '/', substr($class, 0, (int)strpos($class, $tableNamespace)));
-        /** @psalm-suppress PossiblyFalseOperand */
         $name = substr($class, strpos($class, $tableNamespace) + strlen($tableNamespace));
 
         return $this->findPolicy($class, $name, $namespace);
