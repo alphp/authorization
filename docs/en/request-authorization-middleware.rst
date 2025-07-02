@@ -23,7 +23,7 @@ and add::
 
     use Authorization\Policy\RequestPolicyInterface;
     use Cake\Http\ServerRequest;
-    use Authorization\Policy\ResultInterface
+    use Authorization\Policy\ResultInterface;
 
     class RequestPolicy implements RequestPolicyInterface
     {
