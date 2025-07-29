@@ -198,6 +198,11 @@ Both redirect handlers share the same configuration options:
 * ``queryParam`` - the accessed request URL will be attached to the redirect URL
   query parameter (``redirect`` by default).
 * ``statusCode`` - HTTP status code of a redirect, ``302`` by default.
+* ``allowedRedirectExtensions`` - an array of allowed file extensions for redirecting.
+  If the request URL has a file extension that is not in this list, the redirect will not
+  happen and the exception will be rethrown. Can also be a boolean to toggle on/off
+  redirects entirely. This is useful to prevent unauthorized access to API based
+  responses, that should not be redirecting in any case. `true` by default and not enabled then.
 
 For example::
 
@@ -212,6 +217,7 @@ For example::
                 MissingIdentityException::class,
                 OtherException::class,
             ],
+            'allowedRedirectExtensions' => ['csv', 'pdf'],
         ],
     ]));
 
