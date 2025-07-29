@@ -106,7 +106,7 @@ class RedirectHandler implements HandlerInterface
                 $redirect .= '?' . $uri->getQuery();
             }
             $query = urlencode($options['queryParam']) . '=' . urlencode($redirect);
-            if (strpos($url, '?') !== false) {
+            if (str_contains($url, '?')) {
                 $query = '&' . $query;
             } else {
                 $query = '?' . $query;
