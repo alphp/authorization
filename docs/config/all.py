@@ -25,6 +25,7 @@ project = 'CakePHP Authorization'
 version_list = [
     {'name': '1.x', 'number': '/authorization/1.1', 'title': '1.x'},
     {'name': '2.x', 'number': '/authorization/2.x', 'title': '2.x', 'current': True},
+    {'name': '3.x', 'number': '/authorization/3.x', 'title': '3.x'},
 ]
 
 # Languages available.
