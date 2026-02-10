@@ -27,7 +27,7 @@ class MissingPolicyExceptionTest extends TestCase
     public function testConstructQueryInstance(): void
     {
         $articles = new ArticlesTable();
-        $query = $this->createMock(QueryInterface::class);
+        $query = $this->createStub(QueryInterface::class);
         $query->method('getRepository')
             ->willReturn($articles);
         $missingPolicyException = new MissingPolicyException($query);

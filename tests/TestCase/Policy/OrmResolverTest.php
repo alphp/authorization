@@ -119,7 +119,7 @@ class OrmResolverTest extends TestCase
     {
         $this->expectException(MissingPolicyException::class);
 
-        $articles = $this->createMock('Cake\Datasource\RepositoryInterface');
+        $articles = $this->createStub('Cake\Datasource\RepositoryInterface');
         $resolver = new OrmResolver('TestApp');
         $resolver->getPolicy($articles);
     }
