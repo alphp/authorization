@@ -42,7 +42,7 @@ class AuthorizationMiddlewareTest extends TestCase
 {
     public function testInvokeService()
     {
-        $service = $this->createMock(AuthorizationServiceInterface::class);
+        $service = $this->createStub(AuthorizationServiceInterface::class);
         $request = new ServerRequest();
         $handler = new TestRequestHandler(function ($request) use ($service) {
             $this->assertInstanceOf(ServerRequestInterface::class, $request);
@@ -80,7 +80,7 @@ class AuthorizationMiddlewareTest extends TestCase
 
     public function testInvokeApp()
     {
-        $service = $this->createMock(AuthorizationServiceInterface::class);
+        $service = $this->createStub(AuthorizationServiceInterface::class);
         $provider = $this->createMock(AuthorizationServiceProviderInterface::class);
         $provider
             ->expects($this->once())
@@ -110,7 +110,7 @@ class AuthorizationMiddlewareTest extends TestCase
             'id' => 1,
         ]);
 
-        $service = $this->createMock(AuthorizationServiceInterface::class);
+        $service = $this->createStub(AuthorizationServiceInterface::class);
         $request = (new ServerRequest())->withAttribute('identity', $identity);
         $handler = new TestRequestHandler(function ($request) use ($service) {
             $this->assertInstanceOf(RequestInterface::class, $request);
@@ -130,7 +130,7 @@ class AuthorizationMiddlewareTest extends TestCase
 
     public function testIdentityInstance()
     {
-        $service = $this->createMock(AuthorizationServiceInterface::class);
+        $service = $this->createStub(AuthorizationServiceInterface::class);
         $identity = new IdentityDecorator($service, [
             'id' => 1,
         ]);
@@ -155,7 +155,7 @@ class AuthorizationMiddlewareTest extends TestCase
             'id' => 1,
         ];
 
-        $service = $this->createMock(AuthorizationServiceInterface::class);
+        $service = $this->createStub(AuthorizationServiceInterface::class);
         $request = (new ServerRequest())->withAttribute('user', $identity);
         $handler = new TestRequestHandler(function ($request) use ($service) {
             $this->assertInstanceOf(RequestInterface::class, $request);
@@ -183,7 +183,7 @@ class AuthorizationMiddlewareTest extends TestCase
             'id' => 1,
         ]);
 
-        $service = $this->createMock(AuthorizationServiceInterface::class);
+        $service = $this->createStub(AuthorizationServiceInterface::class);
         $request = (new ServerRequest())->withAttribute('identity', $identity);
         $handler = new TestRequestHandler(function ($request) use ($service, $identity) {
             $this->assertInstanceOf(RequestInterface::class, $request);
@@ -212,7 +212,7 @@ class AuthorizationMiddlewareTest extends TestCase
             'id' => 1,
         ];
 
-        $service = $this->createMock(AuthorizationServiceInterface::class);
+        $service = $this->createStub(AuthorizationServiceInterface::class);
         $request = (new ServerRequest())->withAttribute('identity', $identity);
         $handler = new TestRequestHandler();
 
@@ -229,7 +229,7 @@ class AuthorizationMiddlewareTest extends TestCase
 
     public function testUnauthorizedHandler()
     {
-        $service = $this->createMock(AuthorizationServiceInterface::class);
+        $service = $this->createStub(AuthorizationServiceInterface::class);
         $request = new ServerRequest();
         $handler = new TestRequestHandler(function () {
             throw new Exception();
@@ -243,7 +243,7 @@ class AuthorizationMiddlewareTest extends TestCase
 
     public function testUnauthorizedHandlerSuppress()
     {
-        $service = $this->createMock(AuthorizationServiceInterface::class);
+        $service = $this->createStub(AuthorizationServiceInterface::class);
         $request = new ServerRequest();
         $handler = new TestRequestHandler(function () {
             throw new Exception();
@@ -260,7 +260,7 @@ class AuthorizationMiddlewareTest extends TestCase
 
     public function testUnauthorizedHandlerRequireAuthz()
     {
-        $service = $this->createMock(AuthorizationServiceInterface::class);
+        $service = $this->createStub(AuthorizationServiceInterface::class);
         $request = new ServerRequest();
         $handler = new TestRequestHandler(function () {
             throw new Exception();
@@ -301,7 +301,7 @@ class AuthorizationMiddlewareTest extends TestCase
         );
         $handler = new TestRequestHandler();
 
-        $service = $this->createMock(AuthorizationServiceInterface::class);
+        $service = $this->createStub(AuthorizationServiceInterface::class);
         $provider = $this->createMock(AuthorizationServiceProviderInterface::class);
         $provider
             ->expects($this->once())

@@ -35,7 +35,7 @@ class IdentityDecoratorTest extends TestCase
     #[DataProvider('constructorDataProvider')]
     public function testConstructorAccepted($data)
     {
-        $auth = $this->createMock(AuthorizationServiceInterface::class);
+        $auth = $this->createStub(AuthorizationServiceInterface::class);
         $identity = new IdentityDecorator($auth, $data);
         $this->assertSame($data['id'], $identity['id']);
     }
@@ -82,7 +82,7 @@ class IdentityDecoratorTest extends TestCase
     public function testCall()
     {
         $data = new Article(['id' => 1]);
-        $auth = $this->createMock(AuthorizationServiceInterface::class);
+        $auth = $this->createStub(AuthorizationServiceInterface::class);
         $identity = new IdentityDecorator($auth, $data);
         $this->assertFalse(method_exists($identity, 'isDirty'), 'method not defined on decorator');
         $this->assertTrue($identity->isDirty('id'), 'method is callable though.');
@@ -92,7 +92,7 @@ class IdentityDecoratorTest extends TestCase
     {
         $this->expectException(BadMethodCallException::class);
         $data = ['id' => 1];
-        $auth = $this->createMock(AuthorizationServiceInterface::class);
+        $auth = $this->createStub(AuthorizationServiceInterface::class);
         $identity = new IdentityDecorator($auth, $data);
         $identity->boom();
     }
@@ -100,7 +100,7 @@ class IdentityDecoratorTest extends TestCase
     public function testArrayAccessImplementation()
     {
         $data = new ArrayObject(['id' => 1]);
-        $auth = $this->createMock(AuthorizationServiceInterface::class);
+        $auth = $this->createStub(AuthorizationServiceInterface::class);
         $identity = new IdentityDecorator($auth, $data);
 
         $this->assertTrue(isset($identity['id']));
@@ -117,7 +117,7 @@ class IdentityDecoratorTest extends TestCase
     public function testGetOriginalData()
     {
         $data = ['id' => 2];
-        $auth = $this->createMock(AuthorizationServiceInterface::class);
+        $auth = $this->createStub(AuthorizationServiceInterface::class);
         $identity = new IdentityDecorator($auth, $data);
         $this->assertSame($data, $identity->getOriginalData());
     }
@@ -125,7 +125,7 @@ class IdentityDecoratorTest extends TestCase
     public function testGetOriginalDataWrappedObjectHasOriginalData()
     {
         $data = ['id' => 2];
-        $auth = $this->createMock(AuthorizationServiceInterface::class);
+        $auth = $this->createStub(AuthorizationServiceInterface::class);
         $inner = new IdentityDecorator($auth, $data);
         $identity = new IdentityDecorator($auth, $inner);
         $this->assertSame($data, $identity->getOriginalData());
@@ -134,7 +134,7 @@ class IdentityDecoratorTest extends TestCase
     public function testGetProperty()
     {
         $data = new Article(['id' => 2]);
-        $auth = $this->createMock(AuthorizationServiceInterface::class);
+        $auth = $this->createStub(AuthorizationServiceInterface::class);
         $identity = new IdentityDecorator($auth, $data);
 
         $this->assertTrue(isset($identity->id));
