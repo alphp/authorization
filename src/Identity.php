@@ -26,13 +26,6 @@ use Authentication\IdentityInterface as AuthenIdentityInterface;
 class Identity extends IdentityDecorator implements AuthenIdentityInterface
 {
     /**
-     * Identity data
-     *
-     * @var \Authentication\IdentityInterface
-     */
-    protected ArrayAccess|array $identity;
-
-    /**
      * Constructor
      *
      * @param \Authorization\AuthorizationServiceInterface $service The authorization service.
@@ -51,6 +44,8 @@ class Identity extends IdentityDecorator implements AuthenIdentityInterface
      */
     public function getIdentifier(): string|int|array|null
     {
+        assert($this->identity instanceof AuthenIdentityInterface);
+
         return $this->identity->getIdentifier();
     }
 
@@ -59,6 +54,8 @@ class Identity extends IdentityDecorator implements AuthenIdentityInterface
      */
     public function getOriginalData(): ArrayAccess|array
     {
+        assert($this->identity instanceof AuthenIdentityInterface);
+
         return $this->identity->getOriginalData();
     }
 }

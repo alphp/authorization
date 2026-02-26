@@ -28,7 +28,7 @@ trait UnauthorizedHandlerTrait
      *
      * @param \Authorization\Exception\Exception $exception Exception to handle.
      * @param \Psr\Http\Message\ServerRequestInterface $request Request instance.
-     * @param array|string $handler Handler config.
+     * @param array<string, mixed>|string $handler Handler config.
      * @return \Psr\Http\Message\ResponseInterface
      */
     protected function handleException(

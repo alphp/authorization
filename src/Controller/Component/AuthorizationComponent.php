@@ -118,7 +118,7 @@ class AuthorizationComponent extends Component
      * @param mixed $resource The resource to check authorization on.
      * @param string|null $action The action to check authorization for.
      * @param string $method The method to use, either "can" or "canResult".
-     * @return \Authorization\Policy\ResultInterface|bool
+     * @return ($method is 'can' ? bool : \Authorization\Policy\ResultInterface)
      */
     protected function performCheck(
         mixed $resource,

@@ -147,6 +147,7 @@ class AuthorizationService implements AuthorizationServiceInterface
             new MissingMethodException([$method, $action, get_class($policy)]),
         );
 
+        /** @phpstan-ignore callable.nonCallable */
         return [$policy, $method](...);
     }
 
@@ -167,6 +168,7 @@ class AuthorizationService implements AuthorizationServiceInterface
             new MissingMethodException([$method, $action, get_class($policy)]),
         );
 
+        /** @phpstan-ignore callable.nonCallable */
         return [$policy, $method](...);
     }
 

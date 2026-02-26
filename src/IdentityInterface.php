@@ -26,7 +26,7 @@ use Authorization\Policy\ResultInterface;
  * and uses ArrayAccess to expose public properties of the wrapped identity
  * implementation.
  *
- * @extends \ArrayAccess<array-key, mixed>
+ * @extends \ArrayAccess<string, mixed>
  */
 interface IdentityInterface extends ArrayAccess
 {
@@ -64,7 +64,7 @@ interface IdentityInterface extends ArrayAccess
      * If the decorated identity implements `getOriginalData()`
      * that method should be invoked to expose the original data.
      *
-     * @return \ArrayAccess|array
+     * @return \ArrayAccess<string, mixed>|array<string, mixed>
      */
     public function getOriginalData(): ArrayAccess|array;
 }

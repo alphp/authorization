@@ -58,7 +58,7 @@ class AuthorizationMiddleware implements MiddlewareInterface
      *   check authorization. It is intended as a development aid and not to be relied upon
      *   in production. Defaults to `true`.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $_defaultConfig = [
         'identityDecorator' => null,
@@ -179,7 +179,7 @@ class AuthorizationMiddleware implements MiddlewareInterface
      * Builds the identity object.
      *
      * @param \Authorization\AuthorizationServiceInterface $service Authorization service.
-     * @param \ArrayAccess|array $identity Identity data
+     * @param \ArrayAccess<string, mixed>|array<string, mixed> $identity Identity data
      * @return \Authorization\IdentityInterface
      */
     protected function buildIdentity(

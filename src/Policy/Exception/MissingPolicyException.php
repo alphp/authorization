@@ -30,7 +30,7 @@ class MissingPolicyException extends Exception
     protected string $_messageTemplate = 'Policy for `%s` has not been defined.';
 
     /**
-     * @param object|array|string $resource Either the resource instance, a string of the error message, or an array of attributes
+     * @param object|array<string>|string $resource Either the resource instance, a string of the error message, or an array of attributes
      *   that are made available in the view, and sprintf()'d into Exception::$_messageTemplate
      * @param int|null $code The code of the error, is also the HTTP status code for the error.
      * @param \Throwable|null $previous the previous exception.

@@ -37,7 +37,7 @@ class RedirectHandler implements HandlerInterface
      *  - `allowedRedirectExtensions` - If true, redirects are allowed for all extensions.
      *       Pass specific ones to allow list, or false to disallow redirects for any extension.
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $defaultOptions = [
         'exceptions' => [
@@ -123,7 +123,7 @@ class RedirectHandler implements HandlerInterface
 
     /**
      * @param \Psr\Http\Message\ServerRequestInterface $request
-     * @param array $options
+     * @param array<string, mixed> $options
      * @return bool
      */
     protected function redirectAllowed(ServerRequestInterface $request, array $options): bool
