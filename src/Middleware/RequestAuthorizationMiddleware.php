@@ -45,7 +45,7 @@ class RequestAuthorizationMiddleware implements MiddlewareInterface
     /**
      * Default Config
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $_defaultConfig = [
         'authorizationAttribute' => 'authorization',

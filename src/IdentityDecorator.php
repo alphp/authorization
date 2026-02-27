@@ -33,7 +33,7 @@ class IdentityDecorator implements IdentityInterface
     /**
      * Identity data
      *
-     * @var \ArrayAccess|array
+     * @var \ArrayAccess<string, mixed>|array<string, mixed>
      */
     protected ArrayAccess|array $identity;
 
@@ -48,7 +48,7 @@ class IdentityDecorator implements IdentityInterface
      * Constructor
      *
      * @param \Authorization\AuthorizationServiceInterface $service The authorization service.
-     * @param \ArrayAccess|array $identity Identity data
+     * @param \ArrayAccess<string, mixed>|array<string, mixed> $identity Identity data
      */
     public function __construct(AuthorizationServiceInterface $service, ArrayAccess|array $identity)
     {
@@ -86,8 +86,7 @@ class IdentityDecorator implements IdentityInterface
     public function getOriginalData(): ArrayAccess|array
     {
         if (
-            $this->identity
-            && !is_array($this->identity)
+            is_object($this->identity)
             && method_exists($this->identity, 'getOriginalData')
         ) {
             return $this->identity->getOriginalData();
@@ -100,7 +99,7 @@ class IdentityDecorator implements IdentityInterface
      * Delegate unknown methods to decorated identity.
      *
      * @param string $method The method being invoked.
-     * @param array $args The arguments for the method.
+     * @param array<mixed> $args The arguments for the method.
      * @return mixed
      */
     public function __call(string $method, array $args): mixed
@@ -108,10 +107,17 @@ class IdentityDecorator implements IdentityInterface
         if (!is_object($this->identity)) {
             throw new BadMethodCallException("Cannot call `{$method}`. Identity data is not an object.");
         }
-        $call = [$this->identity, $method];
+
+        if (!method_exists($this->identity, $method)) {
+            throw new BadMethodCallException(sprintf(
+                'Method `%s` does not exist on `%s`.',
+                $method,
+                $this->identity::class,
+            ));
+        }
 
         /** @phpstan-ignore callable.nonCallable */
-        return $call(...$args);
+        return [$this->identity, $method](...$args);
     }
 
     /**

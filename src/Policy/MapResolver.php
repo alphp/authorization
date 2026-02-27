@@ -29,7 +29,7 @@ class MapResolver implements ResolverInterface
     /**
      * Resource to policy class name map.
      *
-     * @var array
+     * @var array<string, callable|object|string>
      */
     protected array $map = [];
 
@@ -52,7 +52,7 @@ class MapResolver implements ResolverInterface
      * ]
      * ```
      *
-     * @param array<string, mixed> $map Resource class name to policy map.
+     * @param array<string, callable|object|string> $map Resource class name to policy map.
      * @param \Cake\Core\ContainerInterface|null $container The DIC instance from the application
      */
     public function __construct(array $map = [], ?ContainerInterface $container = null)
@@ -71,7 +71,7 @@ class MapResolver implements ResolverInterface
      * @return $this
      * @throws \InvalidArgumentException When a resource class does not exist or policy is invalid.
      */
-    public function map(string $resourceClass, string|object|callable $policy)
+    public function map(string $resourceClass, callable|object|string $policy)
     {
         if (!class_exists($resourceClass)) {
             $message = sprintf('Resource class `%s` does not exist.', $resourceClass);
