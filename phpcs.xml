@@ -4,6 +4,11 @@
 
     <file>src/</file>
     <file>tests/</file>
-    
+
+    <arg value="nps"/>
+    <arg name="colors"/>
+    <arg name="parallel" value="4"/>
+    <arg name="cache" value=".phpcs.cache"/>
+
     <exclude-pattern>tests/comparisons/*</exclude-pattern>
 </ruleset>

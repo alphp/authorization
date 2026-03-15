@@ -67,8 +67,8 @@
             "@stan",
             "@test"
         ],
-        "cs-check": "phpcs --colors -p",
-        "cs-fix": "phpcbf --colors -p",
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
         "phpstan": "tools/phpstan analyse",
         "stan": "@phpstan",
         "stan-baseline": "tools/phpstan --generate-baseline",
