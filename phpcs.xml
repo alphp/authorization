@@ -2,5 +2,8 @@
 <ruleset name="CakePHP Core">
     <rule ref="CakePHP"/>
 
+    <file>src/</file>
+    <file>tests/</file>
+    
     <exclude-pattern>tests/comparisons/*</exclude-pattern>
 </ruleset>
