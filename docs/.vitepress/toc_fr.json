@@ -1,0 +1,24 @@
+{
+  "/fr/": [
+    {
+      "text": "Prise en main",
+      "collapsed": false,
+      "items": [
+        { "text": "Introduction", "link": "/fr/" },
+        { "text": "Policies", "link": "/fr/policies" },
+        { "text": "Résolveurs de Policy", "link": "/fr/policy-resolvers" },
+        { "text": "Middleware Authorization", "link": "/fr/middleware" },
+        { "text": "Vérifier une Autorisation", "link": "/fr/checking-authorization" },
+        { "text": "AuthorizationComponent", "link": "/fr/component" },
+        { "text": "Middleware d'Autorisation de Requête", "link": "/fr/request-authorization-middleware" }
+      ]
+    },
+    {
+      "text": "Migration",
+      "collapsed": false,
+      "items": [
+        { "text": "Guide de Migration vers 2.0", "link": "/fr/2-0-migration-guide" }
+      ]
+    }
+  ]
+}

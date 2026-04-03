@@ -1,0 +1,12 @@
+{
+  "/es/": [
+    {
+      "text": "Introducción",
+      "collapsed": false,
+      "items": [
+        { "text": "Inicio Rápido", "link": "/es/" },
+        { "text": "Policy", "link": "/es/policies" }
+      ]
+    }
+  ]
+}
