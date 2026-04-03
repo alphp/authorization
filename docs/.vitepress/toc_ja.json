@@ -1,0 +1,24 @@
+{
+  "/ja/": [
+    {
+      "text": "はじめに",
+      "collapsed": false,
+      "items": [
+        { "text": "クイックスタート", "link": "/ja/" },
+        { "text": "Policies", "link": "/ja/policies" },
+        { "text": "ポリシーリゾルバー", "link": "/ja/policy-resolvers" },
+        { "text": "認可ミドルウェア", "link": "/ja/middleware" },
+        { "text": "認可の確認", "link": "/ja/checking-authorization" },
+        { "text": "AuthorizationComponent", "link": "/ja/component" },
+        { "text": "リクエスト認証ミドルウェア", "link": "/ja/request-authorization-middleware" }
+      ]
+    },
+    {
+      "text": "移行ガイド",
+      "collapsed": false,
+      "items": [
+        { "text": "2.0 Migration Guide", "link": "/ja/2-0-migration-guide" }
+      ]
+    }
+  ]
+}
