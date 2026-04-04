@@ -28,6 +28,8 @@ export default {
     hostname: 'https://book.cakephp.org/authorization/3/',
   },
   themeConfig: {
+    siteTitle: false,
+    pluginName: "Authorization",
     socialLinks: [
       { icon: 'github', link: 'https://github.com/cakephp/authorization' },
     ],
