@@ -1,0 +1,25 @@
+{
+  "/": [
+    {
+      "text": "Getting Started",
+      "collapsed": false,
+      "items": [
+        { "text": "Quick Start", "link": "/" },
+        { "text": "Policies", "link": "/policies" },
+        { "text": "Policy Resolvers", "link": "/policy-resolvers" },
+        { "text": "Authorization Middleware", "link": "/middleware" },
+        { "text": "Checking Authorization", "link": "/checking-authorization" },
+        { "text": "AuthorizationComponent", "link": "/component" },
+        { "text": "Request Authorization Middleware", "link": "/request-authorization-middleware" }
+      ]
+    },
+    {
+      "text": "Migration Guides",
+      "collapsed": false,
+      "items": [
+        { "text": "2.0 Migration Guide", "link": "/2-0-migration-guide" },
+        { "text": "3.0 Migration Guide", "link": "/3-0-migration-guide" }
+      ]
+    }
+  ]
+}
