@@ -65,7 +65,11 @@ class OrmResolver implements ResolverInterface
     }
 
     /**
-     * Get a policy for an ORM Table, Entity or Query.
+     * Get a policy for an ORM Table, Entity, Query or class name string.
+     *
+     * Accepting an entity/table FQCN string as the resource allows checks
+     * like `$user->can('add', Article::class)` where no instance is on hand
+     * (e.g. menu rendering before a `newEmptyEntity()`).
      *
      * @param mixed $resource The resource.
      * @return mixed
@@ -88,8 +92,37 @@ class OrmResolver implements ResolverInterface
 
             return $this->getRepositoryPolicy($repo);
         }
+        if (is_string($resource) && class_exists($resource)) {
+            return $this->getPolicyByClassName($resource);
+        }
 
         throw new MissingPolicyException([get_debug_type($resource)]);
+    }
+
+    /**
+     * Locate a policy from a class name string by matching the standard
+     * entity/table namespace markers.
+     *
+     * @param string $class The fully qualified class name.
+     * @return mixed
+     * @throws \Authorization\Policy\Exception\MissingPolicyException When the
+     *   string does not match an entity/table namespace pattern or no policy
+     *   exists at the conventional location.
+     */
+    protected function getPolicyByClassName(string $class): mixed
+    {
+        foreach (['\Model\Entity\\', '\Model\Table\\'] as $marker) {
+            $pos = strpos($class, $marker);
+            if ($pos === false) {
+                continue;
+            }
+            $namespace = str_replace('\\', '/', substr($class, 0, $pos));
+            $name = str_replace('\\', '/', substr($class, $pos + strlen($marker)));
+
+            return $this->findPolicy($class, $name, $namespace);
+        }
+
+        throw new MissingPolicyException([$class]);
     }
 
     /**
