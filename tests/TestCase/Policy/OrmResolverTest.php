@@ -28,8 +28,12 @@ use Cake\TestSuite\TestCase;
 use OverridePlugin\Policy\TagPolicy as OverrideTagPolicy;
 use stdClass;
 use TestApp\Model\Entity\Article;
+use TestApp\Model\Entity\SubDir\Widget;
+use TestApp\Model\Table\SubDir\WidgetsTable;
 use TestApp\Policy\ArticlePolicy;
 use TestApp\Policy\ArticlesTablePolicy;
+use TestApp\Policy\SubDir\WidgetPolicy;
+use TestApp\Policy\SubDir\WidgetsTablePolicy;
 use TestApp\Policy\TestPlugin\BookmarkPolicy;
 use TestApp\Service\TestService;
 use TestPlugin\Model\Entity\Bookmark;
@@ -66,6 +70,14 @@ class OrmResolverTest extends TestCase
         $resolver = new OrmResolver('TestApp');
         $policy = $resolver->getPolicy($article);
         $this->assertInstanceOf(ArticlePolicy::class, $policy);
+    }
+
+    public function testGetPolicyDefinedSubDirEntity(): void
+    {
+        $widget = new Widget();
+        $resolver = new OrmResolver('TestApp');
+        $policy = $resolver->getPolicy($widget);
+        $this->assertInstanceOf(WidgetPolicy::class, $policy);
     }
 
     public function testGetPolicyDefinedPluginEntityAppOveride(): void
@@ -106,6 +118,16 @@ class OrmResolverTest extends TestCase
         $resolver = new OrmResolver('TestApp');
         $policy = $resolver->getPolicy($articles);
         $this->assertInstanceOf(ArticlesTablePolicy::class, $policy);
+    }
+
+    public function testGetPolicyDefinedSubDirTable(): void
+    {
+        $widgets = $this->fetchTable('SubDir/Widgets', [
+            'className' => WidgetsTable::class,
+        ]);
+        $resolver = new OrmResolver('TestApp');
+        $policy = $resolver->getPolicy($widgets);
+        $this->assertInstanceOf(WidgetsTablePolicy::class, $policy);
     }
 
     public function testGetPolicyQueryForDefinedTable(): void
