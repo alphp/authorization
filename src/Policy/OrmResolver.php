@@ -67,7 +67,7 @@ class OrmResolver implements ResolverInterface
     /**
      * Get a policy for an ORM Table, Entity, Query or class name string.
      *
-     * Accepting an entity/table FQCN string as the resource allows checks
+     * Accepting an entity/table fully-qualified class name as the resource allows checks
      * like `$user->can('add', Article::class)` where no instance is on hand
      * (e.g. menu rendering before a `newEmptyEntity()`).
      *
