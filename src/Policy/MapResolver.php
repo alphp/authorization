@@ -104,7 +104,7 @@ class MapResolver implements ResolverInterface
             $class = $resource;
         } else {
             $message = sprintf(
-                'Resource must be an object or class FQCN string, `%s` given.',
+                'Resource must be an object or fully-qualified class name, `%s` given.',
                 is_string($resource) ? $resource : gettype($resource),
             );
             throw new InvalidArgumentException($message);
