@@ -79,10 +79,10 @@ class OrmResolver implements ResolverInterface
     public function getPolicy(mixed $resource): mixed
     {
         if ($resource instanceof EntityInterface) {
-            return $this->getEntityPolicy($resource);
+            return $this->getEntityPolicy($resource::class);
         }
         if ($resource instanceof RepositoryInterface) {
-            return $this->getRepositoryPolicy($resource);
+            return $this->getRepositoryPolicy($resource::class);
         }
         if ($resource instanceof QueryInterface) {
             $repo = $resource->getRepository();
@@ -90,69 +90,48 @@ class OrmResolver implements ResolverInterface
                 throw new RuntimeException('No repository set for the query.');
             }
 
-            return $this->getRepositoryPolicy($repo);
+            return $this->getRepositoryPolicy($repo::class);
         }
         if (is_string($resource) && class_exists($resource)) {
-            return $this->getPolicyByClassName($resource);
+            if (is_subclass_of($resource, EntityInterface::class)) {
+                return $this->getEntityPolicy($resource);
+            }
+            if (is_subclass_of($resource, RepositoryInterface::class)) {
+                return $this->getRepositoryPolicy($resource);
+            }
+
+            throw new MissingPolicyException([$resource]);
         }
 
         throw new MissingPolicyException([get_debug_type($resource)]);
     }
 
     /**
-     * Locate a policy from a class name string by matching the standard
-     * entity/table namespace markers.
+     * Get a policy for an entity class.
      *
-     * @param string $class The fully qualified class name.
-     * @return mixed
-     * @throws \Authorization\Policy\Exception\MissingPolicyException When the
-     *   string does not match an entity/table namespace pattern or no policy
-     *   exists at the conventional location.
-     */
-    protected function getPolicyByClassName(string $class): mixed
-    {
-        foreach (['\Model\Entity\\', '\Model\Table\\'] as $marker) {
-            $pos = strpos($class, $marker);
-            if ($pos === false) {
-                continue;
-            }
-            $namespace = str_replace('\\', '/', substr($class, 0, $pos));
-            $name = str_replace('\\', '/', substr($class, $pos + strlen($marker)));
-
-            return $this->findPolicy($class, $name, $namespace);
-        }
-
-        throw new MissingPolicyException([$class]);
-    }
-
-    /**
-     * Get a policy for an entity
-     *
-     * @param \Cake\Datasource\EntityInterface $entity The entity to get a policy for
+     * @param string $class The entity class name to get a policy for.
      * @return mixed
      */
-    protected function getEntityPolicy(EntityInterface $entity): mixed
+    protected function getEntityPolicy(string $class): mixed
     {
-        $class = $entity::class;
         $entityNamespace = '\Model\Entity\\';
         $namespace = str_replace('\\', '/', substr($class, 0, (int)strpos($class, $entityNamespace)));
-        $name = str_replace('\\', '/', substr($class, strpos($class, $entityNamespace) + strlen($entityNamespace)));
+        $name = str_replace('\\', '/', substr($class, (int)strpos($class, $entityNamespace) + strlen($entityNamespace)));
 
         return $this->findPolicy($class, $name, $namespace);
     }
 
     /**
-     * Get a policy for a table
+     * Get a policy for a table/repository class.
      *
-     * @param \Cake\Datasource\RepositoryInterface $table The table/repository to get a policy for.
+     * @param string $class The table/repository class name to get a policy for.
      * @return mixed
      */
-    protected function getRepositoryPolicy(RepositoryInterface $table): mixed
+    protected function getRepositoryPolicy(string $class): mixed
     {
-        $class = $table::class;
         $tableNamespace = '\Model\Table\\';
         $namespace = str_replace('\\', '/', substr($class, 0, (int)strpos($class, $tableNamespace)));
-        $name = str_replace('\\', '/', substr($class, strpos($class, $tableNamespace) + strlen($tableNamespace)));
+        $name = str_replace('\\', '/', substr($class, (int)strpos($class, $tableNamespace) + strlen($tableNamespace)));
 
         return $this->findPolicy($class, $name, $namespace);
     }

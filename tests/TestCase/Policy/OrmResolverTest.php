@@ -28,6 +28,7 @@ use Cake\TestSuite\TestCase;
 use OverridePlugin\Policy\TagPolicy as OverrideTagPolicy;
 use stdClass;
 use TestApp\Model\Entity\Article;
+use TestApp\Model\Entity\FakeEntity;
 use TestApp\Model\Entity\SubDir\Widget;
 use TestApp\Model\Table\ArticlesTable;
 use TestApp\Model\Table\SubDir\WidgetsTable;
@@ -168,6 +169,17 @@ class OrmResolverTest extends TestCase
 
         $this->expectException(MissingPolicyException::class);
         $resolver->getPolicy(TestService::class);
+    }
+
+    public function testGetPolicyFromEntityNamespacedNonEntityClassString(): void
+    {
+        // FakeEntity lives under `\Model\Entity\` and has a matching FakeEntityPolicy,
+        // but is not an EntityInterface - interface discrimination must reject it
+        // rather than wrongly resolving the policy via namespace matching.
+        $resolver = new OrmResolver('TestApp');
+
+        $this->expectException(MissingPolicyException::class);
+        $resolver->getPolicy(FakeEntity::class);
     }
 
     public function testGetPolicyFromNonClassString(): void
