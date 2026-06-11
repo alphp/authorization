@@ -92,7 +92,7 @@ class MapResolverTest extends TestCase
         $resolver = new MapResolver();
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Resource must be an object or class FQCN string, `Foo` given.');
+        $this->expectExceptionMessage('Resource must be an object or fully-qualified class name, `Foo` given.');
 
         $resolver->getPolicy('Foo');
     }

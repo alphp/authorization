@@ -89,11 +89,11 @@ class MapResolver implements ResolverInterface
     /**
      * {@inheritDoc}
      *
-     * Accepts either an object instance or a class FQCN string registered in
+     * Accepts either an object instance or a fully-qualified class name registered in
      * the map. Strings that are not valid class names continue to raise
      * InvalidArgumentException.
      *
-     * @throws \InvalidArgumentException When a resource is neither an object nor a class FQCN string.
+     * @throws \InvalidArgumentException When a resource is neither an object nor a fully-qualified class name.
      * @throws \Authorization\Policy\Exception\MissingPolicyException When a policy for a resource has not been defined.
      */
     public function getPolicy($resource): mixed
