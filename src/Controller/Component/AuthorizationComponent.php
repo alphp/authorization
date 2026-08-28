@@ -179,6 +179,22 @@ class AuthorizationComponent extends Component
     }
 
     /**
+     * Adds actions that should skip the automatic authorization check.
+     *
+     * Actions registered here are marked as authorized in `authorizeAction()`,
+     * which runs on the configured `authorizationEvent`.
+     *
+     * @param string ...$actions Controller actions to skip authorization for.
+     * @return $this
+     */
+    public function skipAuthorizationActions(string ...$actions)
+    {
+        $this->_config['skipAuthorization'] = array_merge($this->_config['skipAuthorization'], $actions);
+
+        return $this;
+    }
+
+    /**
      * Allows to map controller action to another authorization policy action.
      *
      * For instance you may want to authorize `add` action with `create` authorization policy.
