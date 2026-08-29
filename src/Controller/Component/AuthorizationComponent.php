@@ -143,7 +143,7 @@ class AuthorizationComponent extends Component
             $action = $this->getDefaultAction($request);
         }
 
-        if (in_array($action, $this->skipAuthorization)) {
+        if (in_array($action, $this->_config['skipAuthorization'])) {
             $this->getService($request)->skipAuthorization();
 
             return true;
