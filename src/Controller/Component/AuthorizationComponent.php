@@ -50,13 +50,6 @@ class AuthorizationComponent extends Component
     ];
 
     /**
-     * Methods to skip authorization
-     *
-     * @var array<string>
-     */
-    protected array $skipAuthorization = [];
-
-    /**
      * Allow specific actions to bypass authorization checks
      *
      * @param string ...$actions
@@ -64,7 +57,7 @@ class AuthorizationComponent extends Component
      */
     public function skipAuthorizationActions(string ...$actions)
     {
-        $this->skipAuthorization = $actions;
+        $this->_config['skipAuthorization'] = array_merge($this->_config['skipAuthorization'], $actions);
 
         return $this;
     }
@@ -151,7 +144,7 @@ class AuthorizationComponent extends Component
         }
 
         if (in_array($action, $this->skipAuthorization)) {
-            $this->skipAuthorization();
+            $this->getService($request)->skipAuthorization();
 
             return true;
         }
