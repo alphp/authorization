@@ -49,6 +49,21 @@ class AuthorizationComponent extends Component
         'actionMap' => [],
     ];
 
+    protected array $skipAuthorization = [];
+
+    /**
+     * Allow specific actions to bypass authorization checks
+     *
+     * @param string ...$actions
+     * @return $this
+     */
+    public function skipAuthorizationActions(string ...$actions)
+    {
+        $this->skipAuthorization = $actions;
+
+        return $this;
+    }
+
     /**
      * Check the policy for $resource, raising an exception on error.
      *
@@ -128,6 +143,12 @@ class AuthorizationComponent extends Component
         $request = $this->getController()->getRequest();
         if ($action === null) {
             $action = $this->getDefaultAction($request);
+        }
+
+        if (in_array($action, $this->skipAuthorization)) {
+            $this->skipAuthorization();
+
+            return true;
         }
 
         $identity = $this->getIdentity($request);
