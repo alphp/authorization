@@ -19,6 +19,7 @@ namespace Authorization\Controller\Component;
 use Authorization\AuthorizationServiceInterface;
 use Authorization\Exception\ForbiddenException;
 use Authorization\IdentityInterface;
+use Authorization\Policy\Result;
 use Authorization\Policy\ResultInterface;
 use Cake\Controller\Component;
 use Cake\Http\ServerRequest;
@@ -134,7 +135,10 @@ class AuthorizationComponent extends Component
         if ($skipAuthorization) {
             $this->skipAuthorization();
 
-            return true;
+            return match ($method) {
+                'can' => true,
+                'canResult' => new Result(true),
+            };
         }
 
         $identity = $this->getIdentity($request);
