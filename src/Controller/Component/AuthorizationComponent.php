@@ -50,19 +50,6 @@ class AuthorizationComponent extends Component
     ];
 
     /**
-     * Allow specific actions to bypass authorization checks
-     *
-     * @param string ...$actions
-     * @return $this
-     */
-    public function skipAuthorizationActions(string ...$actions)
-    {
-        $this->_config['skipAuthorization'] = array_merge($this->_config['skipAuthorization'], $actions);
-
-        return $this;
-    }
-
-    /**
      * Check the policy for $resource, raising an exception on error.
      *
      * If $action is left undefined, the current controller action will
@@ -194,6 +181,22 @@ class AuthorizationComponent extends Component
         $service = $this->getService($request);
 
         $service->skipAuthorization();
+
+        return $this;
+    }
+
+    /**
+     * Adds actions that should skip the automatic authorization check.
+     *
+     * Actions registered here are marked as authorized in `authorizeAction()`,
+     * which runs on the configured `authorizationEvent`.
+     *
+     * @param string ...$actions Controller actions to skip authorization for.
+     * @return $this
+     */
+    public function skipAuthorizationActions(string ...$actions)
+    {
+        $this->_config['skipAuthorization'] = array_merge($this->_config['skipAuthorization'], $actions);
 
         return $this;
     }
