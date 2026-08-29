@@ -49,6 +49,11 @@ class AuthorizationComponent extends Component
         'actionMap' => [],
     ];
 
+    /**
+     * Methods to skip authorization
+     *
+     * @var array<string>
+     */
     protected array $skipAuthorization = [];
 
     /**
